@@ -7,16 +7,15 @@ export default function Index() {
   const reset = useCounterStore((state) => state.reset);
 
   return (
-    <View className="flex-1 bg-gray-50 items-center justify-center px-4">
-      <View className="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 w-full max-w-md">
+    <View className="flex-1 bg-white items-center justify-center px-4">
+      <View className=" rounded-2xl  border border-gray-100 p-10 w-full max-w-md">
         <View className="items-center mb-12">
-          <Text className="text-2xl font-medium text-gray-900 mb-2">Counter</Text>
-          <Text className="text-sm text-gray-400">Simple & Clean</Text>
+          <Text className="text-6xl font-medium text-gray-900 mb-2">Counter</Text>
         </View>
 
         <View className="items-center mb-12">
-          <View className="bg-gray-900 rounded-xl p-8 mb-4">
-            <Text className="text-5xl font-light text-white">{count}</Text>
+          <View className="rounded-xl p-8 mb-4">
+            <Text className="text-7xl font-light text-black">{count}</Text>
           </View>
           <Text className="text-gray-400 text-xs uppercase tracking-wide">Current Value</Text>
         </View>
@@ -25,7 +24,7 @@ export default function Index() {
 
         <TouchableOpacity
           onPress={reset}
-          className="mt-4 w-full bg-white/80 hover:bg-white text-gray-700 font-medium py-3.5 px-6 rounded-2xl border border-gray-200/80 hover:border-gray-300/80 transition-all duration-300 ease-out active:scale-[0.98] active:bg-gray-50/80 flex items-center justify-center gap-2 backdrop-blur-sm shadow-sm hover:shadow-md"
+          className="mt-4 w-full bg-white/80 hover:bg-white text-gray-700 font-medium py-3.5 px-6 rounded-2xl border border-gray-200/80 hover:border-gray-300/80 transition-all duration-300 shadow-none active:scale-[0.98] active:bg-gray-50/80 flex items-center justify-center gap-2 "
         >
           <RotateCcw size={20} color="#374151" />
           <Text className="text-gray-700 font-medium">Reset Counter</Text>
@@ -67,18 +66,16 @@ export const ActionButtons = () => {
     <View className="flex-row gap-4 w-full">
       <TouchableOpacity
         onPress={decrement}
-        className="flex-1 bg-gray-100/80 hover:bg-gray-100 text-gray-800 font-medium py-3.5 px-6 rounded-2xl transition-all duration-300 ease-out active:scale-[0.98] active:bg-gray-200/80 flex items-center justify-center gap-2 backdrop-blur-sm border border-gray-200/50 hover:border-gray-300/50"
+        className="flex-1 bg-gray-100/80 hover:bg-gray-100 text-gray-800 font-medium py-3.5 px-6 rounded-2xl transition-all duration-300 ease-out active:scale-[0.98] active:bg-gray-200/80 flex items-center justify-center gap-2 border shadow-none border-gray-200/50 hover:border-gray-300/50"
       >
         <Minus size={20} color="#1f2937" />
-        <Text className="text-gray-800 font-medium">Decrease</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={increment}
-        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 px-6 rounded-2xl transition-all duration-300 ease-out active:scale-[0.98] active:bg-blue-800 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 px-6 rounded-2xl transition-all duration-300 ease-out active:scale-[0.98] active:bg-blue-800 flex items-center justify-center gap-2 "
       >
         <Plus size={20} color="#ffffff" />
-        <Text className="text-white font-medium">Increase</Text>
       </TouchableOpacity>
     </View>
   );
