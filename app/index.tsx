@@ -1,6 +1,6 @@
 import { useCounterStore } from "@/store/counterStore";
 import { Text, TextStyle, TouchableOpacity, View } from "react-native";
-
+import "../styles/global.css";
 export default function Index() {
   const count = useCounterStore((state) => state.count);
   return (
