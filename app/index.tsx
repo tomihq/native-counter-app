@@ -1,45 +1,85 @@
 import { useCounterStore } from "@/store/counterStore";
-import { Text, TextStyle, TouchableOpacity, View } from "react-native";
-import "../styles/global.css";
+import { Minus, Plus, RotateCcw } from "lucide-react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import '../styles/globals.css';
 export default function Index() {
   const count = useCounterStore((state) => state.count);
+  const reset = useCounterStore((state) => state.reset);
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 2,
-        flexDirection: "column"
-      }}
-    >
-      <Text style={{fontSize: 80, fontWeight: "bold"}}>{count}</Text>
-     <ActionButtons/>
+    <View className="flex-1 bg-gray-50 items-center justify-center px-4">
+      <View className="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 w-full max-w-md">
+        <View className="items-center mb-12">
+          <Text className="text-2xl font-medium text-gray-900 mb-2">Counter</Text>
+          <Text className="text-sm text-gray-400">Simple & Clean</Text>
+        </View>
+
+        <View className="items-center mb-12">
+          <View className="bg-gray-900 rounded-xl p-8 mb-4">
+            <Text className="text-5xl font-light text-white">{count}</Text>
+          </View>
+          <Text className="text-gray-400 text-xs uppercase tracking-wide">Current Value</Text>
+        </View>
+
+        <ActionButtons />
+
+        <TouchableOpacity
+          onPress={reset}
+          className="mt-4 w-full bg-white/80 hover:bg-white text-gray-700 font-medium py-3.5 px-6 rounded-2xl border border-gray-200/80 hover:border-gray-300/80 transition-all duration-300 ease-out active:scale-[0.98] active:bg-gray-50/80 flex items-center justify-center gap-2 backdrop-blur-sm shadow-sm hover:shadow-md"
+        >
+          <RotateCcw size={20} color="#374151" />
+          <Text className="text-gray-700 font-medium">Reset Counter</Text>
+        </TouchableOpacity>
+
+        <View className="mt-8 pt-8 border-t border-gray-100">
+          <View className="flex-row justify-between text-xs text-gray-400">
+            <View className="items-center">
+              <Text className="text-gray-600 font-medium">
+                {count > 0 ? "+" : ""}
+                {count}
+              </Text>
+              <Text className="uppercase tracking-wide">Value</Text>
+            </View>
+            <View className="items-center">
+              <Text className="text-gray-600 font-medium">{Math.abs(count)}</Text>
+              <Text className="uppercase tracking-wide">Absolute</Text>
+            </View>
+            <View className="items-center">
+              <Text className="text-gray-600 font-medium">
+                {count >= 0 ? "Positive" : "Negative"}
+              </Text>
+              <Text className="uppercase tracking-wide">Sign</Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
-    
   );
 }
 
 
-export const ActionButtons = () =>{
+
+export const ActionButtons = () => {
   const increment = useCounterStore((state) => state.increment);
   const decrement = useCounterStore((state) => state.decrement);
 
-   const textStyle: TextStyle = {
-    fontSize: 48,
-    fontWeight: 300,
-    color: "#007AFF", 
-    paddingHorizontal: 20,
-  };
-
-   return (
-    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-      <TouchableOpacity onPress={decrement}>
-        <Text style={textStyle}>−</Text>
+  return (
+    <View className="flex-row gap-4 w-full">
+      <TouchableOpacity
+        onPress={decrement}
+        className="flex-1 bg-gray-100/80 hover:bg-gray-100 text-gray-800 font-medium py-3.5 px-6 rounded-2xl transition-all duration-300 ease-out active:scale-[0.98] active:bg-gray-200/80 flex items-center justify-center gap-2 backdrop-blur-sm border border-gray-200/50 hover:border-gray-300/50"
+      >
+        <Minus size={20} color="#1f2937" />
+        <Text className="text-gray-800 font-medium">Decrease</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={increment}>
-        <Text style={textStyle}>+</Text>
+
+      <TouchableOpacity
+        onPress={increment}
+        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 px-6 rounded-2xl transition-all duration-300 ease-out active:scale-[0.98] active:bg-blue-800 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+      >
+        <Plus size={20} color="#ffffff" />
+        <Text className="text-white font-medium">Increase</Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
